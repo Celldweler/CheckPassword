@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <Windows.h>
 /*
@@ -17,7 +17,7 @@ bool IsDigit(char*);
 bool IsBigger(char*);
 bool IsLower(char*);
 
-bool CheckPassword(char* password)
+bool CheckPassword(char password[])
 {
 	if (
 		CheckLengthPassword(password) &&
@@ -32,7 +32,7 @@ bool CheckPassword(char* password)
 	return false;
 }
 
-bool IsLower(char* password)
+bool IsLower(char password[])
 {
 	int index = 0;
 	while ((char)password[index] != '\0')
@@ -58,9 +58,9 @@ bool IsBigger(char* password)
 bool CheckLengthPassword(char* password)
 {
 	int index = 0,
-	    count = 0,
+		count = 0,
 		eight = 8;
-	
+
 	while ((char)password[index] != '\0')
 	{
 		count++;
@@ -70,23 +70,23 @@ bool CheckLengthPassword(char* password)
 	return count >= eight;
 }
 
-bool IsDigit(char* password)
+bool IsDigit(char password[])
 {
 	int index = 0;
 	while ((char)password[index] != '\0')
 	{
-		bool flag=isdigit((char)password[index]);
+		bool flag = isdigit((char)password[index]);
 		if (flag)
 			return flag;
 		index++;
 
-		
+
 	}
-	
+
 }
-bool CheckSymbolPunctuation(char* password)
+bool CheckSymbolPunctuation(char password[])
 {
-	int CountSymbolPunctuation=6;
+	int CountSymbolPunctuation = 6;
 	char _MasSymbolPunctuation[] = { '.', '!', ',', '?', ':', ';' };
 	int index = 0;
 	bool flag = false;
@@ -104,7 +104,7 @@ bool CheckSymbolPunctuation(char* password)
 	return flag;
 }
 
-int main(int argc,char* argv[])
+int main(int argc, char* argv[])
 {
 	SetConsoleOutputCP(1251);
 	SetConsoleCP(1251);
@@ -119,7 +119,7 @@ int main(int argc,char* argv[])
 		flag = true;
 		std::cout << "]$~Enter the password -> ";
 		std::cin >> password;
-		
-	} while ( !CheckPassword(password) );
-		return 0;
+
+	} while (!CheckPassword(password));
+	return 0;
 }
